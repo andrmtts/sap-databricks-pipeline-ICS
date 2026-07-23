@@ -12,6 +12,7 @@ typical Supply Chain/Logistics domain.
 ## Stack
 - Python (data generation, notebooks)
 - Databricks (notebook execution — done manually by the user, you only write the code)
+- PySpark (bronze/silver/gold transformations in the Databricks notebooks)
 - Delta Lake (bronze/silver/gold)
 - SQL for final dashboard queries
 
