@@ -19,14 +19,19 @@ All data is **synthetic** — no real SAP system or data is involved.
 | [`data/mock_sap/`](data/mock_sap) | Synthetic source CSVs (VBAK/VBAP/LIKP/LIPS/MARA/MARD + reference tables) |
 | [`src/data_generation/`](src/data_generation) | Script that generates the synthetic data |
 | [`config/`](config) | Tunable parameters for data generation |
-| [`notebooks/`](notebooks) | Databricks notebooks (bronze/silver/gold), run manually in Databricks |
+| [`notebooks/`](notebooks) | Databricks notebooks (bronze/silver/gold), run via Databricks Connect / CLI |
 | [`sql/`](sql) | Final SQL queries for the dashboard |
 | [`docs/`](docs) | Functional documentation — business requirements, mapping spec, data dictionary, KPI definitions, ERD, UAT, tracking board |
 | [`dashboards/`](dashboards) | Dashboard exports/screenshots |
 
 ## Status
+- **Phase 0 — Setup**: done. Local environment (`sdpICS.venv`, Python 3.12) and Databricks Connect
+  are configured end-to-end — notebooks now run directly from this repo against the workspace's
+  serverless compute, no manual copy-paste into the Databricks UI required.
 - **Phase 1 — Synthetic data generation**: done. See [`docs/data-dictionary.md`](docs/data-dictionary.md).
-- **Phase 2 — Bronze ingestion**: done. [`notebooks/01_bronze_ingestion.py`](notebooks/01_bronze_ingestion.py) run against `main.sap_deliver_bronze` (8 bronze Delta tables).
+- **Phase 2 — Bronze ingestion**: done. [`notebooks/01_bronze_ingestion.py`](notebooks/01_bronze_ingestion.py)
+  run against `main.sap_deliver_bronze` (8 bronze Delta tables), source CSVs landed in the
+  `main.sap_deliver.raw_files` volume.
 - **Phase 3 — Silver/gold transformation + KPIs**: not started.
 - **Phase 4 — Dashboard SQL**: not started.
 - **Phase 5 — Functional documentation**: business requirements, mapping spec, UAT test cases, and tracking board drafted in [`docs/`](docs).
