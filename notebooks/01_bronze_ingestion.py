@@ -6,13 +6,11 @@
 # MAGIC reference tables) and lands them as bronze Delta tables, with an explicit
 # MAGIC schema applied and no business transformation.
 # MAGIC
-# MAGIC **Manual adjustment needed before running (Claude Code has no Databricks
-# MAGIC workspace access — these values must be set by you):**
-# MAGIC 1. `raw_path` widget — where the CSVs from `data/mock_sap/` were uploaded in
-# MAGIC    this workspace (e.g. a Unity Catalog Volume such as
-# MAGIC    `/Volumes/main/sap_deliver/raw_files`, or a DBFS path).
-# MAGIC 2. `catalog` and `bronze_schema` widgets — the Unity Catalog catalog/schema
-# MAGIC    the bronze tables should be created in.
+# MAGIC **Parameters** (widgets, overridable at run time):
+# MAGIC 1. `raw_path` — where the CSVs from `data/mock_sap/` are uploaded in this
+# MAGIC    workspace. Currently `/Volumes/main/sap_deliver/raw_files`.
+# MAGIC 2. `catalog` and `bronze_schema` — the Unity Catalog catalog/schema the
+# MAGIC    bronze tables are created in. Currently `main` / `sap_deliver_bronze`.
 
 # COMMAND ----------
 

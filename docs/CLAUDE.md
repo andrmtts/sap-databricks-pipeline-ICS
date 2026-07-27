@@ -11,7 +11,8 @@ typical Supply Chain/Logistics domain.
 
 ## Stack
 - Python (data generation, notebooks)
-- Databricks (notebook execution — done manually by the user, you only write the code)
+- Databricks (notebook execution — Claude Code runs notebooks via Databricks Connect / CLI,
+  see "Execution" below)
 - PySpark (bronze/silver/gold transformations in the Databricks notebooks)
 - Delta Lake (bronze/silver/gold)
 - SQL for final dashboard queries
@@ -26,10 +27,19 @@ typical Supply Chain/Logistics domain.
 README.md           -> project overview, must link everything
 ```
 
+## Execution
+- Claude Code has a working connection to the Databricks workspace (`https://dbc-5d3f8729-4fa8.cloud.databricks.com`,
+  profile `andrmtts` in `~/.databrickscfg`, serverless compute) via the `databricks` CLI and
+  `databricks-connect` (venv: `sdpICS.venv`, Python 3.12).
+- To actually run a notebook: import it to the workspace (`databricks workspace import ... --language
+  PYTHON --format SOURCE`) and submit it as a one-time job (`databricks jobs submit --json ...` with a
+  `notebook_task`, no cluster spec — serverless is implied). Poll/read the returned run result; don't
+  assume success without checking `result_state`.
+- Still call out in each notebook which parameters/paths are environment-specific (e.g.
+  catalog.schema.table, volume paths), and confirm with the user before creating new catalogs/schemas/
+  volumes or overwriting tables outside of what a phase already calls for.
+
 ## Important rules
-- You (Claude Code) do NOT have access to the Databricks workspace. You write the notebook code,
-  but the user runs, validates, and adjusts it in the real environment. Always make clear in the
-  notebooks which parameters/paths need manual adjustment (e.g. catalog.schema.table).
 - Synthetic data should be realistic but simple to audit: field and table names inspired by
   classic SAP structures from the DELIVER domain:
   - VBAK / VBAP (sales order: header and items)

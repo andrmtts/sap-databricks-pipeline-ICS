@@ -9,7 +9,7 @@ All data is **synthetic** — no real SAP system or data is involved.
 
 ## Stack
 - Python (synthetic data generation)
-- Databricks notebooks (PySpark, run manually by the project owner)
+- Databricks notebooks (PySpark, run via Databricks Connect / CLI)
 - Delta Lake (bronze / silver / gold)
 - SQL (final dashboard queries)
 
@@ -26,7 +26,7 @@ All data is **synthetic** — no real SAP system or data is involved.
 
 ## Status
 - **Phase 1 — Synthetic data generation**: done. See [`docs/data-dictionary.md`](docs/data-dictionary.md).
-- **Phase 2 — Bronze ingestion**: notebook written ([`notebooks/01_bronze_ingestion.py`](notebooks/01_bronze_ingestion.py)), pending manual run in Databricks.
+- **Phase 2 — Bronze ingestion**: done. [`notebooks/01_bronze_ingestion.py`](notebooks/01_bronze_ingestion.py) run against `main.sap_deliver_bronze` (8 bronze Delta tables).
 - **Phase 3 — Silver/gold transformation + KPIs**: not started.
 - **Phase 4 — Dashboard SQL**: not started.
 - **Phase 5 — Functional documentation**: business requirements, mapping spec, UAT test cases, and tracking board drafted in [`docs/`](docs).
