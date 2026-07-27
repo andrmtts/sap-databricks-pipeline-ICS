@@ -20,6 +20,7 @@ env/
 
 # Databricks
 .databricks/
+typings/
 
 # Local-only notes, not for the public repo
 docs/local/
