@@ -19,3 +19,6 @@ env/
 
 # Databricks
 .databricks/
+
+# Local-only notes, not for the public repo
+docs/local/
