@@ -14,23 +14,19 @@ mirrors Jira (To Do / In Progress / In Review / Done).
 
 | Ticket | Description | Linked Artifact | Priority |
 |---|---|---|---|
-| DELIVER-101 | Create plant-to-business-unit reference table (Nexus Case, Biodiscovery, Precision Vanguard) | Mapping Spec — Open Points | High |
 | DELIVER-102 | Confirm delivery type decode table (LFART) with Logistics Ops SMEs | Mapping Spec — Open Points | Medium |
 | DELIVER-103 | Validate whether actual_delivery_date should use proof-of-delivery instead of goods issue date | Mapping Spec — Open Points | Medium |
+| DELIVER-112 | Apply Unity Catalog row-level security policy by business_unit | Mapping Spec §4, UAT #13 | Medium |
 
 ## In Progress
 
-| Ticket | Description | Linked Artifact | Owner | Notes |
-|---|---|---|---|---|
-| DELIVER-090 | Build bronze ingestion — VBAK/VBAP/LIKP/LIPS | Mapping Spec §2 | Data Engineering | Path/catalog params pending confirmation from workspace admin |
-| DELIVER-091 | Implement silver layer joins (order ↔ delivery) | Mapping Spec §2 | Data Engineering | Blocked by DELIVER-101 for business_unit derivation |
+*(none — all in-flight work from the last cycle moved to Done below)*
 
 ## In Review
 
 | Ticket | Description | Linked Artifact | Reviewer | Notes |
 |---|---|---|---|---|
-| DELIVER-080 | Implement OTIF logic (on-time + in-full) in gold layer | KPI Definitions / Mapping Spec | Functional Analyst | Pending validation against UAT #2, #3, #4 (tolerance boundary) |
-| DELIVER-081 | Implement lead_time_days calculation | KPI Definitions | Functional Analyst | Pending validation against UAT #9 |
+| DELIVER-080 | Implement OTIF logic (on-time + in-full) in gold layer | KPI Definitions / Mapping Spec | Functional Analyst | Implemented with UAT #7 null-fix; pending final sign-off on tolerance boundary (UAT #2, #3, #4) |
 
 ## Done
 
@@ -39,6 +35,12 @@ mirrors Jira (To Do / In Progress / In Review / Done).
 | DELIVER-050 | Generate synthetic source data (VBAK/VBAP/LIKP/LIPS) | Data Dictionary | Functional Analyst |
 | DELIVER-051 | Draft Business Requirements Document | Business Requirements | Sofia Bergmann (pending final sign-off) |
 | DELIVER-052 | Draft Functional Mapping Spec | Mapping Spec | Data Functional Lead ISC |
+| DELIVER-090 | Build bronze ingestion — VBAK/VBAP/LIKP/LIPS | `notebooks/01_bronze_ingestion.py` | Data Engineering |
+| DELIVER-101 | Create plant-to-business-unit reference table | `data/mock_sap/plant_business_unit.csv` | Data Governance |
+| DELIVER-091 | Implement silver layer joins (order ↔ delivery) | `notebooks/02_silver_transformation.py` | Data Engineering |
+| DELIVER-081 | Implement lead_time_days calculation | `docs/kpi-definitions.md`, `notebooks/03_gold_transformation.py` | Functional Analyst |
+| DELIVER-110 | Add deduplication logic in silver layer (duplicate delivery_id + delivery_item_id) | `notebooks/02_silver_transformation.py` | Functional Analyst — UAT #14 re-run passed |
+| DELIVER-111 | Fix null-handling in is_on_time logic; route to data quality exception instead of defaulting TRUE | `docs/kpi-definitions.md`, `notebooks/03_gold_transformation.py` | Functional Analyst — UAT #7 re-run passed |
 
 ---
 

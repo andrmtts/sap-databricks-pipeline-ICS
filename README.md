@@ -22,7 +22,7 @@ All data is **synthetic** — no real SAP system or data is involved.
 | [`notebooks/`](notebooks) | Databricks notebooks (bronze/silver/gold), run via Databricks Connect / CLI |
 | [`sql/`](sql) | Final SQL queries for the dashboard |
 | [`docs/`](docs) | Functional documentation — business requirements, mapping spec, data dictionary, KPI definitions, ERD, UAT, tracking board |
-| [`dashboards/`](dashboards) | Dashboard exports/screenshots |
+| [`dashboards/`](dashboards) | Dashboard exports/screenshots (manual — see Phase 4) |
 
 ## Status
 - **Phase 0 — Setup**: done. Local environment (`sdpICS.venv`, Python 3.12) and Databricks Connect
@@ -32,13 +32,24 @@ All data is **synthetic** — no real SAP system or data is involved.
 - **Phase 2 — Bronze ingestion**: done. [`notebooks/01_bronze_ingestion.py`](notebooks/01_bronze_ingestion.py)
   run against `main.sap_deliver_bronze` (8 bronze Delta tables), source CSVs landed in the
   `main.sap_deliver.raw_files` volume.
-- **Phase 3 — Silver/gold transformation + KPIs**: not started.
-- **Phase 4 — Dashboard SQL**: not started.
-- **Phase 5 — Functional documentation**: business requirements, mapping spec, UAT test cases, and tracking board drafted in [`docs/`](docs).
+- **Phase 3 — Silver/gold transformation + KPIs**: done.
+  [`notebooks/02_silver_transformation.py`](notebooks/02_silver_transformation.py) and
+  [`notebooks/03_gold_transformation.py`](notebooks/03_gold_transformation.py) run against
+  `main.sap_deliver_silver` and `main.sap_deliver_gold` (`fact_delivery_item`, `dim_material`,
+  `dim_warehouse`). KPI formulas in [`docs/kpi-definitions.md`](docs/kpi-definitions.md),
+  resulting model in [`docs/erd.md`](docs/erd.md).
+- **Phase 4 — Dashboard SQL**: done. Tested queries in [`sql/`](sql) for OTIF trend, lead time,
+  and fill rate — ready to plug into a Databricks AI/BI Dashboard or Power BI. Building the
+  dashboard itself is a manual step, out of scope for this repo.
+- **Phase 5 — Functional documentation**: business requirements, mapping spec, UAT test cases,
+  and tracking board drafted in [`docs/`](docs).
+- **Phase 6 — Wrap-up**: done.
 
 ## Documentation
 - [Business requirements](docs/business-requirements.md)
 - [Mapping spec (source → gold)](docs/mapping-spec.md)
 - [Data dictionary](docs/data-dictionary.md)
+- [KPI definitions](docs/kpi-definitions.md)
+- [ERD](docs/erd.md)
 - [UAT test cases](docs/uat-test-cases.md)
 - [Tracking board](docs/tracking-board.md)
