@@ -82,8 +82,12 @@ Business/Functional Analyst and the Data Engineers building bronze/silver/gold p
   future source system.
 - **OTIF on-time tolerance confirmed at 24 hours**: `is_on_time = actual_delivery_date <=
   planned_delivery_date + 24h`.
-- Row-level security by `business_unit` to be implemented at the Unity Catalog level — pending
-  Data Governance sign-off on access matrix (see Business Requirements, Discovery Question 4).
+- Row-level security by `business_unit` — filter function built and attached to
+  `fact_delivery_item`/`dim_warehouse` (`notebooks/07_row_level_security.py`,
+  `docs/databricks-concepts.md` §8), but still pending Data Governance sign-off:
+  the per-business-unit access groups it depends on require account-admin rights
+  not available in this environment, so live cross-user restriction is unverified
+  (see Business Requirements, Discovery Question 4, and tracking board DELIVER-112).
 
 ## 6. Change Control
 

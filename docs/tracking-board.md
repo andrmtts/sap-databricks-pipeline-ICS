@@ -16,7 +16,6 @@ mirrors Jira (To Do / In Progress / In Review / Done).
 |---|---|---|---|
 | DELIVER-102 | Confirm delivery type decode table (LFART) with Logistics Ops SMEs | Mapping Spec — Open Points | Medium |
 | DELIVER-103 | Validate whether actual_delivery_date should use proof-of-delivery instead of goods issue date | Mapping Spec — Open Points | Medium |
-| DELIVER-112 | Apply Unity Catalog row-level security policy by business_unit | Mapping Spec §4, UAT #13 | Medium |
 
 ## In Progress
 
@@ -27,6 +26,7 @@ mirrors Jira (To Do / In Progress / In Review / Done).
 | Ticket | Description | Linked Artifact | Reviewer | Notes |
 |---|---|---|---|---|
 | DELIVER-080 | Implement OTIF logic (on-time + in-full) in gold layer | KPI Definitions / Mapping Spec | Functional Analyst | Implemented with UAT #7 null-fix; pending final sign-off on tolerance boundary (UAT #2, #3, #4) |
+| DELIVER-112 | Apply Unity Catalog row-level security policy by business_unit | `notebooks/07_row_level_security.py`, `docs/databricks-concepts.md` §8 | Data Governance | Filter mechanism built and attached to `fact_delivery_item`/`dim_warehouse`; **not** Done per this board's own rule (access-control tickets need Data Governance sign-off) — the per-BU account groups it depends on couldn't be created (no account-admin rights available), so live cross-user restriction is unverified |
 
 ## Done
 
